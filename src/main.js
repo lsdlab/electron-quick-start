@@ -14,9 +14,6 @@ function createWindow () {
     }
   })
 
-  // and load the index.html of the app.
-  // mainWindow.loadFile('index.html')
-
   // 窗口最大化
   mainWindow.maximize();
   // 全屏
@@ -63,14 +60,14 @@ app.on('browser-window-focus', function () {
   globalShortcut.register("F5", () => {
       console.log("F5 is pressed: Shortcut Disabled");
   });
-  // globalShortcut.register("F11", () => {
-  //   console.log("F11 is pressed: Shortcut Disabled");
-  // });
+  globalShortcut.register("F11", () => {
+    console.log("F11 is pressed: Shortcut Disabled");
+  });
 });
 app.on('browser-window-blur', function () {
   globalShortcut.unregister('CommandOrControl+R');
   globalShortcut.unregister('F5');
-  // globalShortcut.unregister('F11');
+  globalShortcut.unregister('F11');
 });
 
 // In this file you can include the rest of your app's specific main process
