@@ -29,7 +29,7 @@ function createWindow () {
   // mainWindow.loadFile('index.html')
 
   // 代理spa electron-serve
-  loadURL(mainWindow);
+  mainWindow.loadURL('app://-');
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
