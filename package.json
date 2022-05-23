@@ -42,6 +42,17 @@
       },
       "makers": [
         {
+          "name": "@electron-forge/maker-squirrel",
+          "platforms": [
+            "windows"
+          ],
+          "config": {
+            "name": "electron_quick_start",
+            "icon": "./src/icon.png",
+            "overwrite": true
+          }
+        },
+        {
           "name": "@electron-forge/maker-zip",
           "platforms": [
             "darwin"
