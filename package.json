@@ -42,7 +42,10 @@
       },
       "makers": [
         {
-          "name": "@electron-forge/maker-squirrel",
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ],
           "config": {
             "name": "electron_quick_start",
             "icon": "./src/icon.png",
@@ -50,13 +53,10 @@
           }
         },
         {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
           "name": "@electron-forge/maker-deb",
+          "platforms": [
+            "linux"
+          ],
           "config": {
             "name": "electron_quick_start",
             "icon": "./src/icon.png",
