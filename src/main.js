@@ -1,14 +1,15 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, globalShortcut} = require('electron')
+const { app, BrowserWindow, globalShortcut } = require('electron')
 const path = require('path')
+const fs = require('fs')
 const serve = require('electron-serve');
 const loadURL = serve({ directory: 'src/dist' });
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
+    width: 800,
+    height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
@@ -16,17 +17,33 @@ function createWindow () {
 
   // 窗口最大化
   mainWindow.maximize();
-  // 全屏
-  // mainWindow.setFullScreen(true);
-  
-  // 载入端口网页
-  // mainWindow.loadURL('http://localhost:8001')
+  // 窗口全屏
+  mainWindow.setFullScreen(true)
+  // 载入网页
+  // mainWindow.loadURL("http://localhost")
 
-  // 载入静态HTML 非spa
-  // mainWindow.loadFile('index.html')
 
-  // 代理spa electron-serve
-  mainWindow.loadURL('app://-');
+
+  // const envpath = '/root/.DEVICEFRONTENDHOST'
+  // if (fs.existsSync(envpath)) {
+  //   fs.readFile(envpath, 'utf8', (err, data) => {
+  //     if (err) {
+  //       console.error(err);
+  //       return;
+  //     }
+  //     mainWindow.loadURL(data.replace("\n", ''))
+  //   });
+  // } else {
+  //   mainWindow.loadFile('src/index.html')
+  // }
+
+  if (fs.existsSync('src/dist')) {
+    // 代理spa electron-serve
+    mainWindow.loadURL('app://-');
+    // loadURL(mainWindow);
+  } else {
+    mainWindow.loadFile('src/index.html')
+  }
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -55,10 +72,10 @@ app.on('window-all-closed', function () {
 // 屏蔽网页刷新快捷键
 app.on('browser-window-focus', function () {
   globalShortcut.register("CommandOrControl+R", () => {
-      console.log("CommandOrControl+R is pressed: Shortcut Disabled");
+    console.log("CommandOrControl+R is pressed: Shortcut Disabled");
   });
   globalShortcut.register("F5", () => {
-      console.log("F5 is pressed: Shortcut Disabled");
+    console.log("F5 is pressed: Shortcut Disabled");
   });
   globalShortcut.register("F11", () => {
     console.log("F11 is pressed: Shortcut Disabled");

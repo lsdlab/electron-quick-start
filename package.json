@@ -37,15 +37,18 @@
     "forge": {
       "packagerConfig": {
         "name": "electron_quick_start",
-        "icon": "./src/icon.png",
+        "icon": "./src/icon/icon.png",
         "overwrite": true
       },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
+          "platforms": [
+            "windows"
+          ],
           "config": {
             "name": "electron_quick_start",
-            "icon": "./src/icon.png",
+            "icon": "./src/icon/icon.png",
             "overwrite": true
           }
         },
@@ -53,13 +56,18 @@
           "name": "@electron-forge/maker-zip",
           "platforms": [
             "darwin"
-          ]
+          ],
+          "config": {
+            "name": "electron_quick_start",
+            "icon": "./src/icon/logo.png",
+            "overwrite": true
+          }
         },
         {
           "name": "@electron-forge/maker-deb",
           "config": {
             "name": "electron_quick_start",
-            "icon": "./src/icon.png",
+            "icon": "./src/icon/icon.png",
             "overwrite": true
           }
         }
